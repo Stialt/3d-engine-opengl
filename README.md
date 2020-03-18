@@ -4,6 +4,10 @@ Simple 3D Engine Prototype developed with OpenGL
 Currently in a raw state featuring some basic 3D interactions
 
 ## Table of Contents (Optional)
+
+- [Engine Features](#engine-features)
+- [Built with](#built-with)
+- [Authors](#authors)
  
 ## Engine Features
 
