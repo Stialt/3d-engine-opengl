@@ -1,2 +1,2 @@
-# 3d-engine-opengl
+# 3D Engine OpenGL
  
