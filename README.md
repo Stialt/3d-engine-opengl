@@ -12,22 +12,31 @@ Currently in a raw state featuring some basic 3D interactions
 ## Engine Features
 
 ### City Generation
+![](demos/01-city-gen.gif)
 
 ### Random Generation
+![](demos/02-random.gif)
 
 ### Day and Night
+![](demos/03-day-night.gif)
 
 ### Flying Over City
+![](demos/04-city-fly.gif)
 
-### Walking though the City
+### Walking through the City
+![](demos/05-city-walk-sm.gif)
 
-### Adding sphere
+### Adding sphere at any position
+![](demos/06-sphere.gif)
 
 ### Interacting with cubes (Clicking small cube)
+![](demos/07-cubes.gif)
 
 ### Some room example and randomly moving animals
+![](demos/08-room-animals.gif)
 
-### Changing some values on go
+### Changing day duration
+![](demos/09-day-duration.gif)
 
 ## Built with
  * [OpenGL](https://www.opengl.org/) - core of the graphics functionality
