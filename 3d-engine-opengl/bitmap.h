@@ -128,7 +128,7 @@ public:
 	bool isRec; //if true - rectangle space, else - circle space
 	float x, z;
 	float width;
-	mySpace();
+	mySpace() {};
 	mySpace(bool Rec, float nx, float nz, float nwidth) {
 		isRec = Rec;
 		x = nx;

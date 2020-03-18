@@ -10,7 +10,7 @@
 #include <MMSystem.h>
 
 #define LIFT_UP 100
-#define LIFT_DOWN 101
+#define LIFT_DOWN 102
 
 
 static int year = 0, day = 0, moonday = 0;
@@ -32,6 +32,8 @@ GLint FPS = 60;
 GLint cityArea = 500;
 
 GLfloat anR = 1.0, anG = 1.0, anB = 1.0, anX = 0.0, anZ = 0.0, anY = 0.0;
+
+int windowWidth = 852, windowHeight = 480;
 
 //gl essential functions
 void init(void);
@@ -67,8 +69,6 @@ void init(void) {
 	glShadeModel(GL_SMOOTH);
 	glClearDepth(1.0);
 
-	//glEnable(GL_LIGHTING);
-	//glEnable(GL_LIGHT0);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	glEnable(GL_LIGHT1);
@@ -125,10 +125,11 @@ void display() {
 	glBindTexture(GL_TEXTURE_2D, MyTextureObject[2]);
 	glEnable(GL_TEXTURE_2D);
 	glBegin(GL_QUADS);
-	glTexCoord2d(0.0, 0.0); glVertex3f(-1600.0, -1, -1600.0);
-	glTexCoord2d(0.0, 2000.0); glVertex3f(-1600.0, -1, 1600.0);
-	glTexCoord2d(2000.0, 2000.0); glVertex3f(1600.0, -1, 1600.0);
-	glTexCoord2d(2000.0, 0.0); glVertex3f(1600.0, -1, -1600.0);
+	float floor3fVal = 2000.0f;
+	glTexCoord2d(0.0, 0.0); glVertex3f(-floor3fVal, -1, -floor3fVal);
+	glTexCoord2d(0.0, 2000.0); glVertex3f(-floor3fVal, -1, floor3fVal);
+	glTexCoord2d(2000.0, 2000.0); glVertex3f(floor3fVal, -1, floor3fVal);
+	glTexCoord2d(2000.0, 0.0); glVertex3f(floor3fVal, -1, -floor3fVal);
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
@@ -307,7 +308,7 @@ void display() {
 int main(int argc, char** argv) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	glutInitWindowSize(1280, 720);
+	glutInitWindowSize(windowWidth, windowHeight);
 	glutInitWindowPosition(0, 0);
 	glutCreateWindow("3D Engine Kim Denis");
 	init();
@@ -358,7 +359,7 @@ int main(int argc, char** argv) {
 	GLint MyMainMenuID = glutCreateMenu(MyMainMenu);//
 	glutAddSubMenu("FPS~", SubMenu1);//    
 	glutAddSubMenu("DAYtime~", SubMenu2);//    
-	glutAddSubMenu("WalkSpeed~", SubMenu3);//    
+	glutAddSubMenu("Step Size~", SubMenu3);//    
 	glutAddSubMenu("Number of buildings~", SubMenu4);
 	glutAddSubMenu("Blending Sphere~", SubMenu5);
 
@@ -370,7 +371,7 @@ int main(int argc, char** argv) {
 
 
 
-void MyMainMenu(int entryID) { //
+void MyMainMenu(int entryID) { 
 	switch (entryID / 1000) {
 	case 1:
 		FPS = entryID % 1000;
@@ -474,7 +475,7 @@ void checkForSigns() {
 	//for blue small cube
 	if (DistanceToBlueCube < 0.5 and myY > -3) {
 		showSquare = true;
-		printf("SmallBLueCubefound\n");
+		//printf("SmallBLueCubefound\n");
 	}
 	else {
 		showSquare = false;
@@ -554,9 +555,9 @@ void MyTimer(int value) {
 
 void MyPassive(int x, int y) {
 	if (mouseX != -1 && mouseY != -1) {
-		if (abs(x - mouseX < 50))
+		if (abs(x - mouseX) < 50)
 			myAngle = myAngle + (x - mouseX) * 1.0;
-		if (abs(y - mouseY < 10))
+		if (abs(y - mouseY) < 10)
 			myVerticalAngle = myVerticalAngle + (y - mouseY) * 1.0;
 	}
 	mouseX = x;
